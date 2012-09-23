@@ -1,5 +1,7 @@
 package be.dhs.client.ui.main;
 
+import static be.dhs.client.ui.main.menu.MenuBarBuilder.aMenuBar;
+import static be.dhs.client.ui.main.menu.MenuBarBuilder.mainMenuBar;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 import java.awt.BorderLayout;
@@ -13,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import be.dhs.client.api.IPresenter;
+import be.dhs.client.ui.main.menu.MenuBarBuilder;
 /**
  * This is the main frame of the application.
  * Visual components are added using a the builder pattern.
@@ -24,16 +27,16 @@ public class MainFrame extends JFrame {
 	private static final long serialVersionUID = -763491454756428767L;
 	private static final int DEFAULT_WIDTH = 200;
 	private static final int DEFAULT_HEIGHT = 200;
-	private IPresenter mainController;
+	private IPresenter mainPresenter;
 	private DefaultListModel flavorList;	
 	/**
 	 * Default constructor.
 	 */
-	public MainFrame(IPresenter mainController){
-		this.mainController = mainController;
+	public MainFrame(IPresenter mainPresenter){
+		this.mainPresenter = mainPresenter;
 		setName(getClass().getSimpleName());
 		setDefaultSettings();
-		loadBaseUI();
+		loadUIComponents();		
 	}
 	/**
 	 * Sets the size of the frame.
@@ -81,7 +84,7 @@ public class MainFrame extends JFrame {
 		
 		JTextField txt = new JTextField();
 		JButton btn = new JButton("Add Artist");
-		btn.addActionListener(mainController.actionAddArtist(txt));
+		btn.addActionListener(mainPresenter.actionAddArtist(txt));
 		flavorPanel.add(txt, BorderLayout.CENTER);
 		flavorPanel.add(btn, BorderLayout.EAST);
 		getContentPane().add(flavorPanel, BorderLayout.CENTER);
@@ -117,14 +120,17 @@ public class MainFrame extends JFrame {
 	private void setDefaultSettings(){
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+
+		this.setJMenuBar(mainMenuBar());
 	}
 	/**
 	 * Load base UI components here.
 	 * Base components are components that are always loaded.
 	 */
-	private void loadBaseUI(){
+	private void loadUIComponents(){
 		flavorList = new DefaultListModel();
 		JList list = new JList(flavorList);
 		getContentPane().add(list, BorderLayout.WEST);
+		
 	}
 }

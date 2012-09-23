@@ -5,7 +5,7 @@
 
     <context:property-placeholder
             location="
-        classpath*:*persistence-mysql.properties,
+        classpath*:*persistence-hsqldb.properties,
         classpath*:*persistence-mongo.properties,
         classpath*:*env-production.properties" />
        <context:annotation-config />
