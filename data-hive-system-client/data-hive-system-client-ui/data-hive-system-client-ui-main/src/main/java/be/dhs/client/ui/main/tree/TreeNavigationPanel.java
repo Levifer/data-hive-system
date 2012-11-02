@@ -18,7 +18,7 @@ public class TreeNavigationPanel extends JTree {
 	}
 
 	public void loadCreators(List<Artist> creators) {
-		treeModel = aTreeModel().withArtists(creators).build();
+		treeModel = aTreeModel().withArtists(creators);
 		setModel(treeModel);
 	}
 

@@ -1,6 +1,7 @@
 package be.dhs.client.ui.main;
 
 import static be.dhs.client.ui.main.menu.MenuBarBuilder.mainMenuBar;
+import static be.dhs.client.ui.main.panel.Panels.MAINPANEL;
 import static java.awt.BorderLayout.CENTER;
 
 import java.awt.BorderLayout;
@@ -10,8 +11,10 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 import be.dhs.client.api.IPresenter;
+import be.dhs.client.ui.main.panel.MainContainer;
 import be.dhs.client.ui.main.panel.MainPanel;
 import be.dhs.client.ui.main.panel.ClientPanel;
+import be.dhs.client.ui.main.panel.Panels;
 /**
  * This is the main frame of the application.
  * Visual components are added using a the builder pattern.
@@ -79,11 +82,9 @@ public class MainFrame extends JFrame implements ClientPanel {
 	 */
 	@Override
 	public void loadUIComponents(){
-		//getContentPane().add(list, BorderLayout.WEST);
-//		MainContainer mainContainer = new MainContainer();
-//		getContentPane().add(mainContainer, BorderLayout.CENTER);
-//		mainContainer.gotoHome();
-//		mainContainer.addCard(new MainPanel(), Panels.OTHERPANEL);
-		getContentPane().add(new MainPanel(mainPresenter), CENTER);
+		MainContainer mainContainer = new MainContainer();
+		mainContainer.add(new MainPanel(mainPresenter), MAINPANEL.name());
+		mainContainer.gotoHome();
+		getContentPane().add(mainContainer, CENTER);
 	}
 }

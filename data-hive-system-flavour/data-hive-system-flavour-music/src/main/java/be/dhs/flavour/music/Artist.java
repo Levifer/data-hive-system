@@ -1,5 +1,7 @@
 package be.dhs.flavour.music;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 
 import be.dhs.persistence.entity.abs.AbstractCreator;
@@ -11,9 +13,10 @@ import be.dhs.persistence.entity.abs.AbstractCreator;
 @Entity
 public class Artist extends AbstractCreator {
 	private static final long serialVersionUID = -5477109320566538252L;
-
-	public Artist(){
-        super();
+	private List<Album> albums;
+	
+	public Artist(String name){
+        super(name);
 		setType(getClass().getSimpleName());
     }
 
@@ -27,7 +30,14 @@ public class Artist extends AbstractCreator {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return this.getName();
+	}
+	
+	public void addAlbum(Album album) {
+		albums.add(album);
+	}
+	
+	public List<Album> getAlbums() {
+		return albums;
 	}
 }

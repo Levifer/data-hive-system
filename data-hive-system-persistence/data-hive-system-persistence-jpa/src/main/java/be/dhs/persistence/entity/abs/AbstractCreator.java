@@ -37,6 +37,10 @@ public abstract class AbstractCreator implements Creator, Serializable {
 
 	}
 
+	public AbstractCreator(String name) {
+		this.name = name;
+	}
+
 	public Long getId() {
 		return id;
 	}

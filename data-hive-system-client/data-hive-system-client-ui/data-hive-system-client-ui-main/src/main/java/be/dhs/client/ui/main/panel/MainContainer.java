@@ -3,6 +3,7 @@ package be.dhs.client.ui.main.panel;
 import static be.dhs.client.ui.main.panel.Panels.MAINPANEL;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
@@ -13,8 +14,6 @@ public class MainContainer extends JPanel {
 	
 	public MainContainer() {
 		this.setLayout(cards);
-		setPreferredSize(new Dimension(200,200));
-		//addCard(new MainPanel(), MAINPANEL);
 	}
 	
 	public void gotoHome() {
@@ -22,13 +21,6 @@ public class MainContainer extends JPanel {
 	}
 	
 	public void setActiveCard(Panels panel) {
-		cards.show(this, MAINPANEL.getName());
-		this.repaint();
-		this.revalidate();
+		cards.show(this, panel.getName());
 	}
-	
-	public void addCard(JPanel panel, Panels panels) {
-		cards.addLayoutComponent(panel, MAINPANEL.getName());
-	}
-
 }
