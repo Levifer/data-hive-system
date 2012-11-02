@@ -1,21 +1,17 @@
 package be.dhs.client.ui.main;
 
-import static be.dhs.client.ui.main.menu.MenuBarBuilder.aMenuBar;
 import static be.dhs.client.ui.main.menu.MenuBarBuilder.mainMenuBar;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import static java.awt.BorderLayout.CENTER;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
+
 import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import be.dhs.client.api.IPresenter;
-import be.dhs.client.ui.main.menu.MenuBarBuilder;
+import be.dhs.client.ui.main.panel.MainPanel;
+import be.dhs.client.ui.main.panel.ClientPanel;
 /**
  * This is the main frame of the application.
  * Visual components are added using a the builder pattern.
@@ -23,12 +19,11 @@ import be.dhs.client.ui.main.menu.MenuBarBuilder;
  * @author GallifreyanCode
  * @version 0
  */
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements ClientPanel {
 	private static final long serialVersionUID = -763491454756428767L;
 	private static final int DEFAULT_WIDTH = 200;
 	private static final int DEFAULT_HEIGHT = 200;
 	private IPresenter mainPresenter;
-	private DefaultListModel flavorList;	
 	/**
 	 * Default constructor.
 	 */
@@ -66,58 +61,13 @@ public class MainFrame extends JFrame {
 	public void showMainFrame(){
 		this.setVisible(true);
 	}
-	/* TODO: create an interface for a flavor,
-	 *  it takes in a new panel and everything specific can be loaded after that.
-	 */
-	/**
-	 * Adds the music flavor abilities.
-	 * TODO: Make this addition dynamic based on settings or service availability.
-	 * @return MainFrame: this instance of JFrame
-	 */
-	public MainFrame addMusicFlavor(){
-		/* Add flavor to flavorList */
-		flavorList.add(flavorList.getSize(), "Music Flavor");
-		/* Add the flavor UI components */
-		/* ! This panel should be a seperat ui-component in the future */
-		JPanel flavorPanel = new JPanel();
-		flavorPanel.setLayout(new BorderLayout());
-		
-		JTextField txt = new JTextField();
-		JButton btn = new JButton("Add Artist");
-		btn.addActionListener(mainPresenter.actionAddArtist(txt));
-		flavorPanel.add(txt, BorderLayout.CENTER);
-		flavorPanel.add(btn, BorderLayout.EAST);
-		getContentPane().add(flavorPanel, BorderLayout.CENTER);
-		return this;
-	}
-	/**
-	 * Adds the film flavor abilities.
-	 * TODO: Make this addition dynamic based on settings or service availability.
-	 * @return MainFrame: this instance of JFrame
-	 */
-	public MainFrame addFilmFlavor(){
-		/* Add flavor to flavorList */
-		flavorList.add(flavorList.getSize(), "Film Flavor");
-		/* Add the flavor UI components */
-		return this;
-	}
-	/**
-	 * Adds the film flavor abilities.
-	 * TODO: Make this addition dynamic based on settings or service availability.
-	 * @return MainFrame: this instance of JFrame
-	 */
-	public MainFrame addBookFlavor(){
-		/* Add flavor to flavorList */
-		flavorList.add(flavorList.getSize(), "Book Flavor");
-		/* Add the flavor UI components */
-		return this;
-	}
 	/**
 	 * Loads the default settings,
 	 *  this functions as some sort of backup for when no custom preferences are enabled before drawing the frame.
 	 * It can also contains predefined settings which are not overruled by custom preferences.
 	 */
-	private void setDefaultSettings(){
+	@Override
+	public void setDefaultSettings(){
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 
@@ -127,10 +77,13 @@ public class MainFrame extends JFrame {
 	 * Load base UI components here.
 	 * Base components are components that are always loaded.
 	 */
-	private void loadUIComponents(){
-		flavorList = new DefaultListModel();
-		JList list = new JList(flavorList);
-		getContentPane().add(list, BorderLayout.WEST);
-		
+	@Override
+	public void loadUIComponents(){
+		//getContentPane().add(list, BorderLayout.WEST);
+//		MainContainer mainContainer = new MainContainer();
+//		getContentPane().add(mainContainer, BorderLayout.CENTER);
+//		mainContainer.gotoHome();
+//		mainContainer.addCard(new MainPanel(), Panels.OTHERPANEL);
+		getContentPane().add(new MainPanel(mainPresenter), CENTER);
 	}
 }

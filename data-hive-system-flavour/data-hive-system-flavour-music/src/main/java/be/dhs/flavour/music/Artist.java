@@ -24,4 +24,10 @@ public class Artist extends AbstractCreator {
 	public void setType(String type) {
 		this.type = type;
 	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.getName();
+	}
 }

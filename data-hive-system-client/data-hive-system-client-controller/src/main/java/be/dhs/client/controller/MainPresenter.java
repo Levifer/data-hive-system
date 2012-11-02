@@ -58,7 +58,7 @@ public class MainPresenter implements IPresenter {
 	 * Start method that is invoked. This sets the configurations of the UI.
 	 */
 	public void start() {
-		mainFrame.setDimension(800, 600).setCentered().addMusicFlavor();
+		mainFrame.setDimension(800, 600).setCentered();
 	}
 	
 	public void stop() {
@@ -92,6 +92,10 @@ public class MainPresenter implements IPresenter {
 			}
 		};
 		return actionAddArtist;
+	}
+	
+	public int getArtistCount() {
+		return 2;
 	}
 
 	private ServiceClass getServiceClass() {

@@ -16,7 +16,7 @@ public class MenuBarBuilder {
 	}
 	
 	public static JMenuBar mainMenuBar() {
-		return aMenuBar().withMenu(aMenu("Users").withRadioListItem("Kim")
+		return aMenuBar().withMenu(aMenu("User").withRadioListItem("Kim")
 												 .withRadioListItem("Ben")
 											     .build())
 											     
@@ -29,8 +29,8 @@ public class MenuBarBuilder {
 								 		         .withSubMenu(aMenu("Folder(s)")
 								 		        		 .withMenuItem("Automatic")
 								 		        		 .withMenuItem("Manual")
-								 		        		 .build())
-					     .build())
+								 		        		 .build())	 		        
+						.build())
 				.build();
 												 
 	}

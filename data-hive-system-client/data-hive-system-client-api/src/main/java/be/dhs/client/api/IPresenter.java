@@ -1,6 +1,7 @@
 package be.dhs.client.api;
 
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JTextField;
 /**
@@ -11,4 +12,5 @@ import javax.swing.JTextField;
  */
 public interface IPresenter {
 	ActionListener actionAddArtist(JTextField txt);
+	int getArtistCount();
 }
